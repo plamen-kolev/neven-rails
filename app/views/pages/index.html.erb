@@ -1,0 +1,93 @@
+
+<% render 'layouts/landing' %>
+
+<div class="col-md-12 nomargin  nopadding">
+    <div class="wrapper">
+        <div id="slides" class="rslides_container">
+            <ul id="slider" class="rslides centered-btns centered-btns1">
+                <% @slides.each do |slide| %>
+                    <li>
+                        <%= image_tag 'loading.gif', 
+                            :class => "slide_image b-lazy" , 
+                            :alt => slide.title,
+                            :data => 
+                                { :src => slide.image} 
+                        %>
+
+                        <div class="slide_item">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-11">
+                                <% if slide.description() %>
+                                    <h1><%= slide.description() %></h1>
+                                <% end %>
+
+                                <% if slide.url %>
+                                    <a class="action_button" href="<%= slide.url %>"><%= t('view_product') %> 
+                                        <%= image_tag 'right_arrow',
+                                            :alt => t('right_arrow')
+                                        %>
+                                    </a>
+                                <% end %>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<%
+=begin
+%>
+
+<div class="col-md-12 gallery_second">
+    <div class="wrapper ">
+        <h1 id="products" class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
+        @include('partials.products')
+    </div>
+</div>
+
+@include('partials.proud')
+
+<div class="col-md-12 center shops">
+    <div class="wrapper">
+        <h1 class="margin_bottom_100 align-center capital stockists">{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
+        <div class="">
+            @foreach ($stockists->chunk(5) as $chunk)
+            <div class="col-md-12">
+                <div class="col-md-1"></div>
+
+                @foreach($chunk as $stockist)
+                    <div class="col-md-2 stockist_icon">
+                        <img class="b-lazy" data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$stockist->title}}" />
+                    </div>
+                @endforeach
+
+                <div class="col-md-1"></div>
+            </div>
+             @endforeach
+
+        </div>
+    </div>
+</div>
+
+@include('partials.ingredient_origin')
+
+@section('scripts')
+@if (!empty($slides))
+<script>
+    $('#slider').responsiveSlides({
+        pager: true,
+        speed: 2000,            // Integer: Speed of the transition, in milliseconds
+        // nav: true,
+        namespace: "centered-btns"
+    });
+</script>
+@endif
+@stop
+
+<%
+=end
+%>
