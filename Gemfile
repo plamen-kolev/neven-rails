@@ -10,7 +10,6 @@ gem 'devise', '~> 4.2'
 gem 'simple_form', '~> 3.4'
 gem 'faker', '~> 1.7', '>= 1.7.2'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem "lazyload-rails"
 # end custom gem files
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

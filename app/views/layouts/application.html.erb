@@ -9,11 +9,13 @@
   </head>
 
   <body>
+    <%= yield :landing %>
     <%= render 'layouts/header' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
     
   </body>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= yield :scripts %>
+
 </html>

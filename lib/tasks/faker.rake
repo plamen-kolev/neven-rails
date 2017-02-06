@@ -7,12 +7,13 @@ namespace :faker do
     slides = 3
     categories = 4
     products = 10
+    stockists = 4
 
     for i in 0..slides do
       slide = Slide.new
       slide.title = Faker::Book.title
       slide.url = Faker::Internet.url
-      slide.image = 'http://lorempixel.com/1000/600/'
+      slide.image = Faker::LoremPixel.image
       slide.description = Faker::Hipster.paragraph(1)
       slide.save
     end
@@ -20,7 +21,7 @@ namespace :faker do
     for i in 0..categories do
       category = Category.new
       category.title = Faker::Commerce.department
-      category.thumbnail = 'http://lorempixel.com/1000/600/'
+      category.thumbnail = Faker::LoremPixel.image
       category.description = Faker::Hipster.paragraph(50)
       category.save
     end
@@ -31,8 +32,8 @@ namespace :faker do
 
       product = Product.new
       product.title = Faker::Commerce.product_name
-      product.thumbnail = 'http://lorempixel.com/1000/600/'
-      product.hover_thumbnail = 'http://lorempixel.com/1000/600/'
+      product.thumbnail = Faker::LoremPixel.image
+      product.hover_thumbnail = Faker::LoremPixel.image
 
       product.tags = Faker::Lorem.word
       product.price = Faker::Commerce.price
@@ -40,11 +41,66 @@ namespace :faker do
       product.description = Faker::Lorem.paragraph(50)
       product.tips = Faker::Lorem.paragraph(50)
       product.benefits = Faker::Lorem.paragraph(50)
-      product.featured = (featured_odds > 80)
+      product.featured = (featured_odds < 80)
       product.in_stock = (in_stock_odds < 80)
       product.category = Category.order("RANDOM()").first
       product.save
     end
+
+    # generate heros
+    hero = Hero.new
+    hero.video = 'bee.webm'
+    hero.image =  'bee.jpg'
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 'lavander2.ogv'
+    hero.image =  'lavander.jpg'
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 'mountain_clouds.webm'
+    hero.image = 'mountain_clouds.jpg'
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 
+    hero.image =
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 
+    hero.image =
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 'northern.webm'
+    hero.image = 'northern.jpg'
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    hero = Hero.new
+    hero.video = 'riverlapse.webm'
+    hero.image = 'riverlapse.jpg'
+    hero.title = Faker::Hipster.sentence(1)
+    hero.save
+
+    for i in 0..stockists do
+      stockist = Stockist.new
+      stockist.title = Faker::Company.name
+      stockist.address = Faker::Address.street_address
+      stockist.lat = Faker::Address.latitude
+      stockist.lng = Faker::Address.longitude
+      stockist.thumbnail = Faker::LoremPixel.image
+      stockist.save
+    end
   end
+
+
 
 end

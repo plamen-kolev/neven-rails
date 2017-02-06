@@ -1,0 +1,19 @@
+<div class="col-md-12 landing nopadding">
+    <div class="wrapper">
+        
+        <div class="landing_container">
+            <div id="landing_overlay">
+                <h1 class="capital center white landing_title" id="landing_text"><%= @hero.title %></h1>
+                <%= link_to 'Our products', products_path, :class => 'capital center white', :id => "landing_link" %>
+            </div>
+            <div id="landing_player">
+                <video autoplay loop poster="assets/thumbnails/<%= @hero.image %>" id="landing_video" >
+                    <source src="assets/<%= @hero.video %>" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,5 +1,6 @@
-
-<% render 'layouts/landing' %>
+<% content_for :landing do %>
+    <%= render 'layouts/landing' %>
+<% end %>
 
 <div class="col-md-12 nomargin  nopadding">
     <div class="wrapper">
@@ -7,11 +8,9 @@
             <ul id="slider" class="rslides centered-btns centered-btns1">
                 <% @slides.each do |slide| %>
                     <li>
-                        <%= image_tag 'loading.gif', 
+                        <%= image_tag slide.image, 
                             :class => "slide_image b-lazy" , 
-                            :alt => slide.title,
-                            :data => 
-                                { :src => slide.image} 
+                            :alt => slide.title
                         %>
 
                         <div class="slide_item">
@@ -38,56 +37,51 @@
     </div>
 </div>
 
-<%
-=begin
-%>
+
 
 <div class="col-md-12 gallery_second">
     <div class="wrapper ">
-        <h1 id="products" class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
-        @include('partials.products')
+        <h1 id="products" class="index_h1_margin capital center">Special offers</h1>
+        <%= render 'layouts/products' %>
     </div>
 </div>
 
-@include('partials.proud')
+
+<%= render 'layouts/proud' %>
 
 <div class="col-md-12 center shops">
     <div class="wrapper">
-        <h1 class="margin_bottom_100 align-center capital stockists">{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
+        <h1 class="margin_bottom_100 align-center capital stockists">Find our products in these stores</h1>
         <div class="">
-            @foreach ($stockists->chunk(5) as $chunk)
-            <div class="col-md-12">
-                <div class="col-md-1"></div>
+            <% @stockists.each do |chunk| %>
+                <div class="col-md-12">
+                    <div class="col-md-1"></div>
 
-                @foreach($chunk as $stockist)
-                    <div class="col-md-2 stockist_icon">
-                        <img class="b-lazy" data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$stockist->title}}" />
-                    </div>
-                @endforeach
+                    <% chunk.each do |stockist| %>
+                        <div class="col-md-2 stockist_icon">
+                            <%= image_tag stockist.thumbnail, size: '150x150' %>
+                        </div>
+                    <% end %>
 
-                <div class="col-md-1"></div>
-            </div>
-             @endforeach
+                    <div class="col-md-1"></div>
+                </div>
+             <% end %>
 
         </div>
     </div>
 </div>
 
-@include('partials.ingredient_origin')
+<%= render 'layouts/ingredient_origin' %>
 
-@section('scripts')
-@if (!empty($slides))
-<script>
-    $('#slider').responsiveSlides({
-        pager: true,
-        speed: 2000,            // Integer: Speed of the transition, in milliseconds
-        // nav: true,
-        namespace: "centered-btns"
-    });
-</script>
-@endif
-@stop
+<% content_for :scripts do %>
+    <script>
+        $('#slider').responsiveSlides({
+            pager: true,
+            speed: 2000,            // Integer: Speed of the transition, in milliseconds
+            // nav: true,
+            namespace: "centered-btns"
+        });
+    </script>
 
-<%
-=end
-%>
+<% end %>
+

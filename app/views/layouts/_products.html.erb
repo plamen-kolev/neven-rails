@@ -1,0 +1,34 @@
+<% @products.each do |chunk| %>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <% chunk.each do |product| %>
+
+            <div class="col-md-2 thumbnail_item">
+
+                <div class="thumbnail_item_inner">
+
+                    <%= link_to product_path(product.slug), class: "hoverable_product_image" do %>
+                       <%= image_tag product.thumbnail, :size => '150x150' , :crop => :fill, alt: product.title, class: "hide_on_hover" %>
+                       <%= image_tag product.hover_thumbnail, :size => '150x150', :crop => :fill, alt: product.title, class: "show_on_hover" %>
+                    <% end %>
+
+                    <h2 class="thumbnail_title">
+                        <%= link_to product.title, product_path(product.slug) %> 
+                    </h2>
+                    <span class="underliner"></span>
+                    <p class="product_price">
+                        <%= number_to_currency(product.price, :unit => "£") %>
+                    </p>
+
+                    <div class="view_product">
+                        <p>
+                            <%= link_to 'View product', product_path(product.slug) %> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+
+        <div class="col-md-1"></div>
+    </div>
+<% end %>

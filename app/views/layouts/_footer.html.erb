@@ -1,0 +1,80 @@
+<div class="col-sm-12 footer">
+    <div class="col-sm-12 footer_flowers">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+        <%= image_tag 'footer/neven-left.jpg', alt: 'Side image above the footer' %>
+
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2 hidden_flower">
+            <%= image_tag 'footer/neven-right.jpg', alt: 'Side image above the footer' %>
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+    <div class="wrapper">
+        <div class="col-sm-3">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Customer care</a></li>
+                <li><a href="">Shipping returns</a></li>
+                <li><a href="">faq</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-3">
+            <p>Our friends</p>
+            <ul class="nopadding">
+                <li><a href="">foo</a></li>
+                <li><a href="">bar</a></li>
+                <li><a href="">baz</a></li>
+                <li><a href="">doo</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-3 ">
+            <p>Find us on</p>
+                <%= link_to '', class: 'soc_icons' do %>
+                   <%= image_tag "footer/facebook-icon.svg", alt: "Facebook icon" %>
+                <% end %>
+
+                <%= link_to '', class: 'soc_icons' do %>
+                   <%= image_tag "footer/insta-icon.svg", alt: "Instagram icon" %>
+                <% end %>
+                
+                <%= link_to '', class: 'soc_icons' do %>
+                   <%= image_tag "footer/pin-icon.svg", alt: "Instagram icon" %>
+                <% end %>
+                
+                <%= link_to '', class: 'soc_icons' do %>
+                   <%= image_tag "footer/google-icon.svg", alt: "Google icon" %>
+                <% end %>
+                
+        </div>
+
+        <div class="col-sm-3">
+            <p>Never miss on updates</p>
+
+            <form class="footer_email_form" method="POST" action="#">
+                <input class="generic_input" value="Subscribe" placeholder="Email" name="subscribe_email" type="email" id="footer_email_input" />
+                <input class="green_button" type="submit" value="Subscribe" />
+            </form>
+            <ul style="padding:0px;margin-top:20px;">
+                <li><a href="">Login</a></li>
+                <li><a href="">Featured products</a></li>
+            </ul>
+        </div>
+
+
+        <div class="icons_and_trade">
+            <p>Copyright &copy; 2016 Neven</p>
+
+            <%= image_tag 'footer/visa_icon.png', alt: 'Visa icon' %>
+            <%= image_tag 'footer/mastercard_icon.png', alt: 'Mastercard icon' %>
+            <%= image_tag 'footer/amex_icon.png', alt: 'American express icon' %>
+            <%= image_tag 'footer/paypal_icon.png', alt: 'Paypal icon' %>
+
+        </div>
+
+    </div>
+</div>

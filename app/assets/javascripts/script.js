@@ -10,10 +10,6 @@
 //     cache: true,
 //     success:
 // function() {
-    var bLazy = new Blazy({
-        container: 'body', // Default is window
-         offset: 250 // Loads images 100px before they're visible
-    });
 // }
 // });
 
@@ -23,7 +19,6 @@
 //     dataType: 'script',
 //     cache: true,
 //     success:
-
 // function() {
     $('.hamburger_toggle').click(function(e) {
         $(this).toggleClass('active');
