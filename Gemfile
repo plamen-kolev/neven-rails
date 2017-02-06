@@ -9,6 +9,7 @@ end
 gem 'devise', '~> 4.2'
 gem 'simple_form', '~> 3.4'
 gem 'faker', '~> 1.7', '>= 1.7.2'
+gem 'rails_admin', '~> 1.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 # end custom gem files
 
