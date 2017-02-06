@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 
-//= require lightbox.min.js
 //= require responsiveslides.min.js
 //= require tether.min.js
 //= require drop.min.js

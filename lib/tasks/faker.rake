@@ -10,22 +10,33 @@ namespace :faker do
     stockists = 5
     images_per_product = 4
     product_options = 4
+    ingredients = 20
+    ingredients_per_product = 4
+
+    # create ingredients
+    for i in 1..ingredients do
+      Ingredient.create(
+        thumbnail: Faker::LoremPixel.image,
+        title:  Faker::Commerce.product_name,
+        description: Faker::Hipster.paragraph(1)
+      )
+    end
 
     for i in 1..slides do
-      slide = Slide.new
-      slide.title = Faker::Book.title
-      slide.url = Faker::Internet.url
-      slide.image = Faker::LoremPixel.image
-      slide.description = Faker::Hipster.paragraph(1)
-      slide.save
+      Slide.create(
+        title: Faker::Commerce.product_name,
+        url: Faker::Internet.url,
+        image: Faker::LoremPixel.image,
+        description: Faker::Hipster.paragraph(1)
+      )
     end
 
     for i in 1..categories do
-      category = Category.new
-      category.title = Faker::Commerce.department
-      category.thumbnail = Faker::LoremPixel.image
-      category.description = Faker::Hipster.paragraph(50)
-      category.save
+      Category.create(
+        title: Faker::Commerce.department,
+        thumbnail: Faker::LoremPixel.image,
+        description: Faker::Hipster.paragraph(50)
+      )
     end
 
     for i in 1..products do
@@ -46,8 +57,17 @@ namespace :faker do
       product.featured = (featured_odds < 80)
       product.in_stock = (in_stock_odds < 80)
       product.category = Category.order("RANDOM()").first
-      product.save
 
+      product.save
+      
+      # associate ingredient with product
+      rand_ingredients = Ingredient.order("RANDOM()").limit(10)
+      
+      rand_ingredients.each do |ingredient|
+        product.ingredients << ingredient
+      end
+      product.save
+      
       # create images
       for i in 1..images_per_product do
         product_image = ProductImage.create(thumbnail: Faker::LoremPixel.image, product_id: product.id)
