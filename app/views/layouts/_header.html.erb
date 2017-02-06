@@ -14,9 +14,7 @@
 
             </div>
         </div>
-<%
-=begin
-%>
+
         <div class="col-md-12 main_menu">
             <div class="col-md-1"></div>
             <div class="col-sm-6 menu_links">
@@ -24,31 +22,33 @@
 
                 <ul class="menu_links_ul">
                     <li class="active mobieicon_align">
-                        <a href="{{ route('index', []) }}"><span title="{{trans('home_icon_that_takes_you_to_the_inex_page')}}" class="menu_icon mobile_only home_mobile_icon" ></span>{{ trans('text.home') }}</a>
+                        <a href="<%= root_path %>"><span title="Home" class="menu_icon mobile_only home_mobile_icon" ></span><%= t('home') %></a>
                     </li>
                     <li class="dropdown mobieicon_align">
 
-                      <button class="menu_button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span title="{{ trans('text.categories') }}" class="menu_icon mobile_only categories_mobile_icon" ></span>
-                        {{ trans('text.categories') }}
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="{{route('product.index')}}">{{trans('text.all_products')}}</a></li>
-                        @foreach ($categories as $category)
-                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title()}}</a></li>
-                        @endforeach
-                      </ul>
+                        <button class="menu_button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span title="Categories" class="menu_icon mobile_only categories_mobile_icon" ></span>
+                            <%= t('text.categories') %>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><%= link_to 'All products', products_path %></li>
+                            <% @categories.each do |category| %>
+                                <li>
+                                    <%= link_to category.title, category_path(category.slug)  %>
+                                </li>
+                            <% end %>
+                        </ul>
 
                     </li>
 
                     <li class="dropdown mobieicon_align">
                         <button class="menu_button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span class="menu_icon mobile_only stockist_mobile_icon" title="{{trans('text.stockists')}}" ></span>{{ trans('text.stockists') }}
+                            <span class="menu_icon mobile_only stockist_mobile_icon" title="Stockists" ></span>Stockists
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="{{route('stockist.index')}}">{{ trans('text.view_stockists')}}</a></li>
+                            <li> <%= link_to 'Stockists', stockists_path %> </li>
                             <li><a href="{{route('stockist')}}">{{ trans('text.become_stockist')}}</a></li>
                         </ul>
                     </li>
@@ -80,18 +80,7 @@
                         </a>
 
                     </li>
-                    @if(App::isLocale('en'))
-                        <li class="mobieicon_align">
-                            <a href="{{LaravelLocalization::getLocalizedURL('nb') }}"><span tite="{{trans('text.language_icon')}}" class="menu_icon mobile_only language_mobile_icon" ></span><span class="language_icon">NO</span>
-                            </a>
-                        </li>
-                    @else
-                        <li class="mobieicon_align">
-                            <a href="{{LaravelLocalization::getLocalizedURL('en') }}"><span tite="{{trans('text.language_icon')}}" class="menu_icon mobile_only language_mobile_icon"></span><span class="language_icon">EN</span>
-                            </a>
-                        </li>
-                    @endif
-
+                    
                     @if(!Auth::check())
                         <li class="mobieicon_align">
                             <a title="{{trans('text.sign_in_alt')}}" class="login_button" href="{{ route('auth.login') }}"><span class="menu_icon mobile_only signin_mobile_icon"></span>{{ trans('text.log_in')}}
@@ -121,7 +110,3 @@
         </div>
     </div>
 </div>
-
-<%
-=end
-%>

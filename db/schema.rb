@@ -10,16 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205112054) do
+ActiveRecord::Schema.define(version: 20170206090229) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "slug",        null: false
+    t.string   "thumbnail",   null: false
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "thumbnail",                               null: false
+    t.string   "tags"
+    t.string   "hidden_tags"
+    t.string   "title",                                   null: false
+    t.text     "description",                             null: false
+    t.text     "tips",                                    null: false
+    t.text     "benefits",                                null: false
+    t.boolean  "featured",                                null: false
+    t.string   "slug",                                    null: false
+    t.boolean  "in_stock",                                null: false
+    t.string   "hover_thumbnail",                         null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "category_id"
+    t.decimal  "price",           precision: 8, scale: 2, null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["title"], name: "index_products_on_title", unique: true
+  end
 
   create_table "slides", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.string   "image"
-    t.text     "description_en"
-    t.text     "description_nb"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

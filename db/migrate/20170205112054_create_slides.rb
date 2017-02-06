@@ -4,8 +4,7 @@ class CreateSlides < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :url
       t.string :image
-      t.text :description_en
-      t.text :description_nb
+      t.text :description
 
       t.timestamps
     end
